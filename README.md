@@ -1,58 +1,163 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🌿 BaTeCNusantara.id
 
-## About Laravel
+**Portal dokumentasi dan eksplorasi budaya Bayan**
+Ritual adat · Cerita rakyat · Musik tradisional · Sejarah & filosofi · Motif tenun · Paket wisata
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Status](https://img.shields.io/badge/status-perencanaan-orange?style=flat-square)
+![Spesifikasi](https://img.shields.io/badge/spesifikasi-Revisi%206-blue?style=flat-square)
+![Laravel](https://img.shields.io/badge/Laravel-Filament-FF2D20?style=flat-square&logo=laravel&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-Alpine.js-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Lisensi](https://img.shields.io/badge/lisensi-belum_ditentukan-lightgrey?style=flat-square)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[Ruang Lingkup](#-ruang-lingkup) · [Fitur](#-fitur-utama) · [Teknologi](#-teknologi) · [Halaman](#-peta-halaman) · [Database](#-database) · [Keamanan](#-keamanan-dan-operasional) · [Instalasi](#-menjalankan-secara-lokal)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+> 📌 **Status:** tahap perencanaan. Spesifikasi lengkap ada di [`docs/struktur-batecnusantara-rev6.md`](docs/struktur-batecnusantara-rev6.md) (Revisi 6 — Final). README ini hanya ringkasannya.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🎯 Ruang Lingkup
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+| | |
+|---|---|
+| 📚 **Dokumentasi budaya** | Ritual (linimasa interaktif), cerita rakyat, musik (galeri audio), sejarah & filosofi |
+| 🧵 **Galeri motif tenun** | Katalog dokumentasi, **bukan toko**. Tautan marketplace eksternal bersifat opsional |
+| 🧭 **Paket tour** | Mitra wisata, paket dengan timeline destinasi, pemesanan dengan konfirmasi manual via WhatsApp |
+| 📰 **Berita & video** | Blog dinamis dan pustaka video berkategori |
+| 🚫 **Di luar cakupan** | Marketplace dan etnomatematika (sudah ada di web lain) |
+| 🌐 **Hosting** | Berjalan di subdomain, mis. `budaya.[domain-utama].id` |
 
-## Agentic Development
+## ✨ Fitur Utama
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 🏛️ Konten Budaya
+- Konten per kategori dengan foto, audio, dan video (upload atau tautan YouTube), status draft/terbit.
+- **Narasumber** dipilih lewat dropdown (boleh lebih dari satu per konten), punya foto, dan tampil di halaman detail semua budaya. Kontaknya privat.
+- **Sejarah & Filosofi** berupa satu halaman tetap (`/budaya/sejarah`) yang memuat kontennya secara berurutan.
 
-```bash
-composer require laravel/boost --dev
+### 🧳 Paket Tour
+- **Satu pesanan = satu orang**; rombongan mendaftar satu per satu.
+- Paket dan harga selalu dibaca dari database saat submit, bukan dari formulir. Harga tersimpan di `harga_saat_pesan`.
+- Alur: halaman sukses → hitung mundur 2 detik → WhatsApp admin terbuka dengan pesan terisi → admin konfirmasi manual → admin kirim WA ke tiap mitra (data minimal, tanpa nomor WA wisatawan).
 
-php artisan boost:install
+### 🏠 Beranda (13 bagian)
+Navigasi · hero · pengantar · angka terdokumentasi · tentang web + video loop · kategori budaya · konten pilihan · galeri tenun · paket unggulan · Kata Tokoh · testimoni · Supported by · footer.
+Bagian yang kosong disembunyikan otomatis. Tombol chat WhatsApp mengambang tersedia di semua halaman publik.
+
+### 🧩 Lainnya
+- 📝 Halaman **Tentang** dan **Kebijakan Privasi** dapat diedit dari admin (dua halaman tetap).
+- ♿ **Aksesibilitas** sebagai standar: teks `alt` gambar, kontras, navigasi keyboard, jeda carousel, `prefers-reduced-motion`.
+
+## 🛠️ Teknologi
+
+| Lapisan | Pilihan (usulan) |
+|---|---|
+| ⚙️ Backend | Laravel, dengan SoftDeletes untuk mitra dan paket |
+| 🗂️ Panel admin | Filament |
+| 🎨 Front-end | Blade + Tailwind CSS + Alpine.js |
+| 🖥️ Server | VPS dengan Nginx |
+| 💾 Backup | `spatie/laravel-backup` |
+| 🖼️ Gambar | Intervention Image atau Spatie Media Library (WebP, sisi terpanjang maks. 1600 px) |
+
+## 🗺️ Peta Halaman
+
+<details open>
+<summary><b>🌍 Halaman publik</b></summary>
+
+| Rute | Isi |
+|---|---|
+| `/` | Beranda |
+| `/budaya` | Eksplorasi budaya |
+| `/budaya/sejarah` | Sejarah & Filosofi (satu halaman) |
+| `/budaya/ritual`, `/budaya/cerita`, `/budaya/musik` | Daftar per kategori; detail di `/{kategori}/{slug}` |
+| `/tenun`, `/tenun/{slug}` | Galeri dan detail motif tenun |
+| `/paket-tour`, `/paket-tour/{slug}` | Daftar dan detail paket |
+| `/paket-tour/{slug}/pesan` | Formulir pendaftaran |
+| `/pemesanan/sukses` | Pendaftaran berhasil |
+| `/berita`, `/berita/{slug}` | Berita/blog |
+| `/video`, `/video/{slug}` | Pustaka video |
+| `/tentang`, `/kontak`, `/kebijakan-privasi` | Halaman informasi |
+
+</details>
+
+<details>
+<summary><b>🔐 Panel admin (<code>/admin</code>)</b></summary>
+
+| Kelompok | Menu |
+|---|---|
+| Budaya | Kategori Budaya · Budaya · Narasumber · Motif Tenun |
+| Paket tour | Mitra Wisata · Paket Wisata · Pesanan Paket |
+| Beranda | Tokoh · Testimoni · Supported By · Kontak Chat |
+| Berita & video | Berita · Kategori Berita · Video · Kategori Video |
+| Sistem | Dashboard · Halaman · User Admin · Pengaturan Situs |
+
+</details>
+
+## 🗄️ Database
+
+**26 tabel.** Relasi pentingnya:
+
+```
+paket_tour ──< paket_destinasi >── mitra_wisata
+paket_tour ──< pesanan_tour ──< notifikasi_mitra >── mitra_wisata
+konten_budaya >──< narasumber        (lewat konten_narasumber)
+motif_tenun   >── narasumber         (opsional)
+tokoh                                (berdiri sendiri, hanya untuk Beranda)
+halaman                              (2 baris tetap lewat seeder: Tentang, Kebijakan Privasi)
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+> ℹ️ `tokoh` dan `narasumber` sengaja dipisah: tokoh hanya tampil di Beranda, narasumber dipakai di konten budaya dan motif tenun.
 
-## Contributing
+Skema lengkap ada di Bagian 4 dokumen spesifikasi.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 👥 Peran Pengguna
 
-## Code of Conduct
+| Peran | Akses (usulan) |
+|---|---|
+| 🛡️ **Admin** | Semua menu, termasuk paket tour, pesanan, user, halaman Tentang/Kebijakan Privasi, dan hapus narasumber |
+| ✏️ **Kurator** | Konten (budaya, motif tenun, berita) serta tambah/ubah narasumber |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Pembagian peran masih berstatus usulan di dokumen spesifikasi.
 
-## Security Vulnerabilities
+## 🔒 Keamanan dan Operasional
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- 💾 Backup database harian dan media mingguan, disimpan **di luar VPS**; uji pemulihan sebelum peluncuran.
+- 🤖 Anti-spam formulir: honeypot, token sekali pakai, validasi format nomor WA dan tanggal. Tanpa pembatasan per IP dan tanpa captcha untuk saat ini.
+- 🧼 Isi dari editor teks kaya (berita dan halaman) dibersihkan (sanitize HTML).
+- ✅ Checkbox persetujuan data pribadi wajib dan divalidasi di server.
+- 📤 Batas upload perlu disetel di tiga tempat: `upload_max_filesize` dan `post_max_size` (PHP), serta `client_max_body_size` (Nginx).
 
-## License
+> ⚠️ **Ditunda:** pembatasan percobaan login admin dan 2FA. Sebelum peluncuran publik, minimal throttle login sebaiknya dipertimbangkan.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🚀 Menjalankan Secara Lokal
+
+> Kode aplikasi belum dibuat, jadi langkah di bawah masih kerangka umum Laravel dan perlu disesuaikan setelah proyek diinisialisasi.
+
+```bash
+git clone <url-repo>
+cd <nama-folder>
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+# atur koneksi database di .env
+php artisan migrate --seed   # seeder membuat dua halaman tetap (Tentang, Kebijakan Privasi)
+npm run dev
+php artisan serve
+```
+
+## 🧭 Rencana Lanjutan
+
+- [ ] Pembatasan login admin dan 2FA
+- [ ] Kompresi video otomatis di server (ffmpeg lewat antrean; opsional, butuh CPU VPS yang cukup)
+- [ ] Halaman profil narasumber (opsional)
+
+## 📖 Dokumentasi
+
+- 📄 [`docs/struktur-batecnusantara-rev6.md`](docs/struktur-batecnusantara-rev6.md): sitemap, modul admin, tampilan Beranda, alur pemesanan, skema database, upload media, backup, dan keputusan yang sudah ditetapkan.
+
+## 📜 Lisensi
+
+Belum ditentukan.
